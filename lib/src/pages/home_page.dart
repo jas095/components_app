@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.green,
       ),
       body: _list(),
+      backgroundColor: Colors.blueGrey[50],
     );
   }
 
@@ -48,10 +49,12 @@ class HomePage extends StatelessWidget {
           color: Colors.amber,
         ),
         onTap: () {
-          final route = MaterialPageRoute(
+          Navigator.pushNamed(context, opt['ruta']);
+
+          /* final route = MaterialPageRoute(
             builder: (context) => AlertPage(),
           );
-          Navigator.push(context, route);
+          Navigator.push(context, route); */
         },
       );
 
