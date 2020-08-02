@@ -11,7 +11,8 @@ class HomePageTemp extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView(
-        children: _createItems(),
+        // children: _createItems(),
+        children: _createItemsShort(),
       ),
     );
   }
@@ -28,5 +29,22 @@ class HomePageTemp extends StatelessWidget {
     }
 
     return listItems;
+  }
+
+  List<Widget> _createItemsShort() {
+    return option
+        .map((e) => Column(
+              children: <Widget>[
+                ListTile(
+                  leading: Icon(Icons.android),
+                  title: Text(e),
+                  subtitle: Text('Pi number'),
+                  trailing: Icon(Icons.arrow_right),
+                  onTap: () {},
+                ),
+                Divider()
+              ],
+            ))
+        .toList();
   }
 }
