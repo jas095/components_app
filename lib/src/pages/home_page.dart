@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:components_app/src/providers/menu_provider.dart';
+import 'package:components_app/src/utils/icon_string_util.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -9,6 +10,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Components'),
         centerTitle: true,
+        backgroundColor: Colors.green,
       ),
       body: _list(),
     );
@@ -38,10 +40,7 @@ class HomePage extends StatelessWidget {
     data.forEach((opt) {
       final widgetTemp = ListTile(
         title: Text(opt['texto']),
-        leading: Icon(
-          Icons.android,
-          color: Colors.green,
-        ),
+        leading: getIcon(opt['icon']),
         trailing: Icon(
           Icons.keyboard_arrow_right,
           color: Colors.amber,
