@@ -8,6 +8,15 @@ class AvatarPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Avatar Page'),
+        backgroundColor: Colors.green,
+      ),
+      backgroundColor: Colors.blueGrey[50],
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.keyboard_backspace),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        backgroundColor: Colors.green,
       ),
     );
   }
