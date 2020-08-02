@@ -21,13 +21,17 @@ class CardPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(10.0),
         children: <Widget>[
-          cardTypeOne(),
+          _cardTypeOne(),
+          SizedBox(
+            height: 20.0,
+          ),
+          _cardTypeTwo(),
         ],
       ),
     );
   }
 
-  Widget cardTypeOne() {
+  Widget _cardTypeOne() {
     return Card(
       child: Column(
         children: <Widget>[
@@ -44,6 +48,31 @@ class CardPage extends StatelessWidget {
             ],
             mainAxisAlignment: MainAxisAlignment.end,
           )
+        ],
+      ),
+    );
+  }
+
+  Widget _cardTypeTwo() {
+    return Card(
+      child: Column(
+        children: <Widget>[
+          FadeInImage(
+            placeholder: AssetImage('assets/jar-loading.gif'),
+            image: NetworkImage(
+                'https://e.rpp-noticias.io/normal/2019/09/17/082208_841632.jpg'),
+            fadeInDuration: Duration(milliseconds: 100),
+            fit: BoxFit.cover,
+          ),
+          /*Image(
+            image: NetworkImage('https://e.rpp-noticias.io/normal/2019/09/17/082208_841632.jpg'),
+            ),*/
+          Container(
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                'Image via url',
+                style: TextStyle(fontSize: 18.0),
+              )),
         ],
       ),
     );
