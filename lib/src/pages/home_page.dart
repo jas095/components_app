@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:components_app/src/providers/menu_provider.dart';
 import 'package:components_app/src/utils/icon_string_util.dart';
 
+import 'package:components_app/src/pages/alert_page.dart';
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class HomePage extends StatelessWidget {
       initialData: [],
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
         return ListView(
-          children: _listItems(snapshot.data),
+          children: _listItems(snapshot.data, context),
         );
       },
     );
@@ -34,7 +36,7 @@ class HomePage extends StatelessWidget {
     // );
   }
 
-  List<Widget> _listItems(List<dynamic> data) {
+  List<Widget> _listItems(List<dynamic> data, BuildContext context) {
     final List<Widget> options = [];
 
     data.forEach((opt) {
@@ -45,7 +47,12 @@ class HomePage extends StatelessWidget {
           Icons.keyboard_arrow_right,
           color: Colors.amber,
         ),
-        onTap: () {},
+        onTap: () {
+          final route = MaterialPageRoute(
+            builder: (context) => AlertPage(),
+          );
+          Navigator.push(context, route);
+        },
       );
 
       options..add(widgetTemp)..add(Divider());
