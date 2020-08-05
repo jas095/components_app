@@ -18,6 +18,7 @@ class _AnimatedContainerPageState extends State<AnimatedContainerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text('Animated Container'),
@@ -37,11 +38,7 @@ class _AnimatedContainerPageState extends State<AnimatedContainerPage> {
           curve: Curves.fastOutSlowIn,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green,
-        onPressed: _changeAnimation,
-        child: Icon(Icons.play_circle_filled),
-      ),
+      floatingActionButton: _createButtons(),
     );
   }
 
@@ -54,5 +51,28 @@ class _AnimatedContainerPageState extends State<AnimatedContainerPage> {
           random.nextInt(255), random.nextInt(255), random.nextInt(255), 1);
       _borderRadius = BorderRadius.circular(random.nextInt(100).toDouble());
     });
+  }
+
+  Widget _createButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        SizedBox(
+          width: 30,
+        ),
+        FloatingActionButton(
+          heroTag: null,
+          backgroundColor: Colors.green,
+          child: Icon(Icons.keyboard_backspace),
+          onPressed: () => Navigator.pop(context),
+        ),
+        Expanded(child: SizedBox()),
+        FloatingActionButton(
+          backgroundColor: Colors.green,
+          onPressed: _changeAnimation,
+          child: Icon(Icons.play_circle_filled),
+        ),
+      ],
+    );
   }
 }
