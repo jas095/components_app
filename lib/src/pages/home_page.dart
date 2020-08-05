@@ -9,13 +9,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         title: Text('Components'),
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
       body: _list(),
-      backgroundColor: Colors.blueGrey[50],
     );
   }
 

@@ -6,6 +6,7 @@ class AlertPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         title: Text('Alert Page'),
         backgroundColor: Colors.green,
@@ -18,7 +19,6 @@ class AlertPage extends StatelessWidget {
             shape: StadiumBorder(),
             onPressed: () => _showAlert(context)),
       ),
-      backgroundColor: Colors.blueGrey[50],
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.keyboard_backspace),
         onPressed: () {

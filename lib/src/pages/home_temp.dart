@@ -6,7 +6,9 @@ class HomePageTemp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: Text('Components Temp'),
         centerTitle: true,
       ),

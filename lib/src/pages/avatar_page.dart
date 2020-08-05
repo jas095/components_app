@@ -6,6 +6,7 @@ class AvatarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         title: Text('Avatar Page'),
         backgroundColor: Colors.green,
@@ -13,8 +14,8 @@ class AvatarPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(3.3),
             child: CircleAvatar(
-              // child: Text('KL'),
-              //backgroundColor: Colors.black45,
+              //child: Text('KL'),
+              backgroundColor: Colors.black45,
               backgroundImage: NetworkImage(
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSbvzWK4FzUYpoKiq0SVpc3kq5ox1x4rPufbg&usqp=CAU'),
               radius: 25.0,
@@ -36,7 +37,6 @@ class AvatarPage extends StatelessWidget {
               'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSbvzWK4FzUYpoKiq0SVpc3kq5ox1x4rPufbg&usqp=CAU',
         ),
       ),
-      backgroundColor: Colors.blueGrey[50],
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.keyboard_backspace),
         onPressed: () {

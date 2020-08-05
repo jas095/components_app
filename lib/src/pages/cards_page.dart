@@ -6,11 +6,11 @@ class CardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         title: Text('Cards'),
         backgroundColor: Colors.green,
       ),
-      backgroundColor: Colors.blueGrey[50],
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.keyboard_backspace),
         onPressed: () {
