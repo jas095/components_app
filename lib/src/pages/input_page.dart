@@ -10,6 +10,10 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   String _name = '';
 
+  String _email = '';
+
+  String _password = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +24,16 @@ class _InputPageState extends State<InputPage> {
       ),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 13.0, vertical: 23.0),
-        children: <Widget>[_createInputs(), Divider(), _createPerson()],
+        children: <Widget>[
+          _createInputs(),
+          Divider(),
+          _createEmail(),
+          Divider(),
+          _createPassword(),
+          Divider(),
+          _showFields(),
+          Divider(),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.keyboard_backspace),
@@ -35,9 +48,12 @@ class _InputPageState extends State<InputPage> {
   Widget _createInputs() {
     return TextField(
       // autofocus: true,
+      cursorColor: Colors.green,
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+              borderSide: BorderSide(color: Colors.green, width: 1.0)),
           counter: Text('Letters ${_name.length}'),
           hintText: 'Complete name',
           labelText: 'Name',
@@ -52,9 +68,45 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  Widget _createPerson() {
+  Widget _createEmail() {
+    return TextField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+          hintText: 'Email',
+          labelText: 'Email',
+          icon: Icon(Icons.alternate_email),
+          suffixIcon: Icon(Icons.email)),
+      onChanged: (value) {
+        setState(() {
+          _email = value;
+        });
+      },
+    );
+  }
+
+  Widget _createPassword() {
+    return TextField(
+      obscureText: true,
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+          hintText: 'Password',
+          labelText: 'Password',
+          icon: Icon(Icons.lock_outline),
+          suffixIcon: Icon(Icons.lock)),
+      onChanged: (value) {
+        setState(() {
+          _password = value;
+        });
+      },
+    );
+  }
+
+  Widget _showFields() {
     return ListTile(
-      title: Text('Your name is: $_name'),
+      title: Text(
+          'Your name is: $_name\nYour email is: $_email\nYour password: $_password'),
     );
   }
 }
