@@ -13,6 +13,25 @@ class _InputPageState extends State<InputPage> {
   String _email = '';
 
   String _password = '';
+  String _date = '';
+  TextEditingController _fieldInputDateController = new TextEditingController();
+
+  String _selectItem = 'dog';
+  List<String> _itemsPets = [
+    'dog',
+    'cat',
+    'cow',
+    'rabbit',
+    'duck',
+    'hen',
+    'horse',
+    'squirrel',
+    'turtles',
+    'alligators',
+    'crocodiles',
+    'lizards',
+    'snakes'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +49,10 @@ class _InputPageState extends State<InputPage> {
           _createEmail(),
           Divider(),
           _createPassword(),
+          Divider(),
+          _createDate(context),
+          Divider(),
+          _createDropDown(),
           Divider(),
           _showFields(),
           Divider(),
@@ -88,7 +111,6 @@ class _InputPageState extends State<InputPage> {
   Widget _createPassword() {
     return TextField(
       obscureText: true,
-      keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
           hintText: 'Password',
@@ -103,10 +125,76 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
+  Widget _createDate(BuildContext context) {
+    return TextField(
+      controller: _fieldInputDateController,
+      enableInteractiveSelection: false,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+          hintText: 'Date of birth',
+          labelText: 'Date of birth',
+          icon: Icon(Icons.perm_contact_calendar),
+          suffixIcon: Icon(Icons.calendar_today)),
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+        _selectDate(context);
+      },
+    );
+  }
+
+  _selectDate(BuildContext context) async {
+    DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1950),
+      lastDate: DateTime(2030),
+      locale: Locale('es', 'ES'),
+    );
+
+    if (picked != null) {
+      setState(() {
+        _date = picked.toString();
+        _fieldInputDateController.text = _date;
+      });
+    }
+  }
+
+  List<DropdownMenuItem<String>> getOptionDrown() {
+    List<DropdownMenuItem<String>> itemList = new List();
+    _itemsPets.forEach((element) {
+      itemList.add(DropdownMenuItem(
+        child: Text(element),
+        value: element,
+      ));
+    });
+
+    return itemList;
+  }
+
+  Widget _createDropDown() {
+    return Row(
+      children: <Widget>[
+        Icon(Icons.select_all),
+        SizedBox(
+          width: 30.0,
+        ),
+        DropdownButton(
+          value: _selectItem,
+          items: getOptionDrown(),
+          onChanged: (opt) {
+            setState(() {
+              _selectItem = opt;
+            });
+          },
+        ),
+      ],
+    );
+  }
+
   Widget _showFields() {
     return ListTile(
       title: Text(
-          'Your name is: $_name\nYour email is: $_email\nYour password: $_password'),
+          'Your name is: $_name\nYour email is: $_email\nYour password: $_password\nItem Selected $_selectItem'),
     );
   }
 }
