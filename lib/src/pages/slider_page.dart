@@ -9,6 +9,7 @@ class SliderPage extends StatefulWidget {
 
 class _SliderPageState extends State<SliderPage> {
   double _valueSlider = 100.0;
+  bool _blockCheckBox = false;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,14 @@ class _SliderPageState extends State<SliderPage> {
       body: Container(
         padding: EdgeInsets.only(top: 50.0),
         child: Column(
-          children: <Widget>[_createSlider(), Expanded(child: _createImage())],
+          children: <Widget>[
+            _createSlider(),
+            _createCheckBox(),
+            _createSwitch(),
+            Expanded(
+              child: _createImage(),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -41,13 +49,45 @@ class _SliderPageState extends State<SliderPage> {
       // divisions: 25,
       value: _valueSlider,
       min: 10.0,
-      max: 500.0,
-      onChanged: (element) {
-        setState(() {
-          _valueSlider = element;
-        });
-      },
+      max: 400.0,
+      onChanged: (_blockCheckBox)
+          ? null
+          : (element) {
+              setState(() {
+                _valueSlider = element;
+              });
+            },
     );
+  }
+
+  Widget _createCheckBox() {
+    return CheckboxListTile(
+        title: Text('Block the slider'),
+        value: _blockCheckBox,
+        onChanged: (element) {
+          setState(() {
+            _blockCheckBox = element;
+          });
+        });
+
+    /* Checkbox(
+        value: _blockCheckBox,
+        onChanged: (element) {
+          setState(() {
+            _blockCheckBox = element;
+          });
+        }); */
+  }
+
+  Widget _createSwitch() {
+    return SwitchListTile(
+        title: Text('Block the slider'),
+        value: _blockCheckBox,
+        onChanged: (element) {
+          setState(() {
+            _blockCheckBox = element;
+          });
+        });
   }
 
   Widget _createImage() {
@@ -55,7 +95,7 @@ class _SliderPageState extends State<SliderPage> {
       width: _valueSlider,
       fit: BoxFit.contain,
       image: NetworkImage(
-          'https://i.pinimg.com/originals/ce/1d/ca/ce1dca317d57ca309ff63e50967e4898.jpg'),
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfBklS8YsOxZmtbdLRZ8_bdQNRlRjLe4IZEQ&usqp=CAU'),
     );
   }
 }
